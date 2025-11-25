@@ -2,13 +2,16 @@ package com.salesianostriana.dam.apirecetas.models;
 
 import com.salesianostriana.dam.apirecetas.models.enums.Dificultad;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Receta {
 
     @Id
@@ -20,9 +23,13 @@ public class Receta {
     @Enumerated
     private Dificultad dificultad;
 
+    @OneToMany(mappedBy = "receta", fetch = FetchType.EAGER)
+    @Builder.Default
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<Receta_Ingrediente> ingredientes = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
-    @ManyToMany(mappedBy = "recetas")
-    private List<Ingrediente> ingredientes = new ArrayList<>();
 }
