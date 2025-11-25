@@ -22,4 +22,10 @@ public class Ingrediente {
             inverseJoinColumns = @JoinColumn(name = "receta_id")
     )
     private List<Receta> recetas = new ArrayList<>();
+
+    /***
+     * para la asociacion, poruqe la tabla de en medio tien que tener mas columnas
+     * Solucion crear una tercera entidad ingredientes-recetas y cambiar a many to one de recetas e ingredientes
+     *
+     */
 }
