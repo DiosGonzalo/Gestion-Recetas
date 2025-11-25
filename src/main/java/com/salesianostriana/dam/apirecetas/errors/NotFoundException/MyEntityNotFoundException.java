@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.apirecetas.errors;
+package com.salesianostriana.dam.apirecetas.errors.NotFoundException;
 
 public class MyEntityNotFoundException extends RuntimeException
 {
