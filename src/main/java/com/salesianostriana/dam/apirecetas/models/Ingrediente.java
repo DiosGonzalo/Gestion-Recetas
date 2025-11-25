@@ -1,13 +1,16 @@
 package com.salesianostriana.dam.apirecetas.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Ingrediente {
 
     @Id
@@ -15,13 +18,12 @@ public class Ingrediente {
     private Long id;
     @Column(unique = true)
     private String nombre;
-    @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
-    @JoinTable(
-            name = "ingrediente_receta",
-            joinColumns = @JoinColumn(name = "ingrediente_id"),
-            inverseJoinColumns = @JoinColumn(name = "receta_id")
-    )
-    private List<Receta> recetas = new ArrayList<>();
+    @OneToMany(mappedBy = "ingrediente", fetch = FetchType.EAGER)
+    @Builder.Default
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    private List<Receta_Ingrediente> recetas = new ArrayList<>();
+
 
     /***
      * para la asociacion, poruqe la tabla de en medio tien que tener mas columnas
