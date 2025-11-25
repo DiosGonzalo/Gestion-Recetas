@@ -1,0 +1,100 @@
+package com.salesianostriana.dam.apirecetas.controllers;
+
+
+import com.salesianostriana.dam.apirecetas.models.Categoria;
+import com.salesianostriana.dam.apirecetas.models.dto.CategoriaResponse;
+import com.salesianostriana.dam.apirecetas.models.dto.CrearCategoriaCmd;
+import com.salesianostriana.dam.apirecetas.services.CategoriaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+
+@Tag( name = "Categorias", description = " Operaciones con las categorias")
+@RequestMapping("/categoria")
+@RestController
+@RequiredArgsConstructor
+public class CategoriaController {
+    private final CategoriaService categoriaService;
+
+    @GetMapping
+    @Operation(summary = "obtiene todas las categorias")
+    @ApiResponses({
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "Lista de categorías obtenida exitosamente",
+                    content = @Content(
+                            mediaType = "application/json",
+                            array = @ArraySchema(schema = @Schema(implementation = CategoriaResponse.class)),
+                            examples = @ExampleObject(
+                                    value = """
+                    [
+                        {
+                            "id": 1,
+                            "nombre": "Postres",
+                            "descripcion": "Recetas dulces y postres caseros"
+                        },
+                        {
+                            "id": 2,
+                            "nombre": "Platos principales",
+                            "descripcion": "Recetas para comidas y cenas"
+                        },
+                        {
+                            "id": 3,
+                            "nombre": "Entrantes",
+                            "descripcion": "Aperitivos y primeros platos"
+                        }
+                    ]
+                    """
+                            )
+                    )
+            ),
+            @ApiResponse(responseCode = "404", description = "No se ha encontrado ninguna categoria")
+    })
+    public List<CategoriaResponse> getAll(){
+        return categoriaService.getAllCategoria()
+                .stream()
+                .map(categoria -> CategoriaResponse.of(categoria))
+                .toList();
+    }
+
+    public ResponseEntity<CategoriaResponse> getById(Long id){
+        return ResponseEntity.ok(
+                CategoriaResponse.of(categoriaService.getCategoriaById(id)));
+
+    }
+
+    public ResponseEntity<CategoriaResponse> create(
+            @RequestBody CrearCategoriaCmd cmd
+    ){
+        Categoria nueva = categoriaService.saveCategoria(cmd);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(CategoriaResponse.of(nueva));
+    }
+
+
+    public CategoriaResponse edit(@PathVariable Long id, @RequestBody CrearCategoriaCmd cmd){
+        return CategoriaResponse.of(categoriaService.edit(cmd,id));
+    }
+
+
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        categoriaService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+
+
+}
