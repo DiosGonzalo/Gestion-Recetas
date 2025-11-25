@@ -19,6 +19,9 @@ public class Receta {
     @Enumerated
     private Dificultad dificultad;
 
-    @ManyToMany(mappedBy = "Receta", cascade = CascadeType.ALL)
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+    @ManyToMany(mappedBy = "recetas")
     private List<Ingrediente> ingredientes = new ArrayList<>();
 }
