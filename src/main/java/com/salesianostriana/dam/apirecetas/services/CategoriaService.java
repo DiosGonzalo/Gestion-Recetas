@@ -50,4 +50,11 @@ public class CategoriaService {
                 })
                 .orElseThrow(() -> new TiempoInvalidoException());
     }
+
+    public void deleteById(Long id){
+        categoriaRepository.deleteById(id);
+    }
+    public void delete (Categoria categoria){
+        deleteById(categoria.getId());
+    }
 }
