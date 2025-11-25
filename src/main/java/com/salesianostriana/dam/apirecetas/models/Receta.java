@@ -14,6 +14,7 @@ public class Receta {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(unique = true)
     private String nombre;
     private Integer tiempoPreparacionMin;
     @Enumerated

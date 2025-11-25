@@ -13,6 +13,7 @@ public class Ingrediente {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(unique = true)
     private String nombre;
     @ManyToMany(cascade = {CascadeType.PERSIST,CascadeType.MERGE})
     @JoinTable(
