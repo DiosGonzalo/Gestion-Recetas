@@ -10,7 +10,7 @@ public record IngredienteCmd(
         String nombre
 ) {
 
-    public Ingrediente toEntity(List<Receta_Ingrediente> recetas){
+    public Ingrediente toEntity(){
         return Ingrediente.builder()
                 .nombre(this.nombre)
                 .build();
