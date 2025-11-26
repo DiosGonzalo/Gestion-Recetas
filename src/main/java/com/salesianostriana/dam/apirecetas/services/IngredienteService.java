@@ -1,6 +1,6 @@
 package com.salesianostriana.dam.apirecetas.services;
 
-import com.salesianostriana.dam.apirecetas.Repository.IngredienteRespository;
+import com.salesianostriana.dam.apirecetas.repository.IngredienteRespository;
 import com.salesianostriana.dam.apirecetas.models.Ingrediente;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
