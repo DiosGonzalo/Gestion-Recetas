@@ -19,20 +19,32 @@ public class Receta_Ingrediente {
         this.receta = r;
     }
 
-
+//    @Id
+//    @GeneratedValue
+//    private Long id;
     @ManyToOne
-    @MapsId("ingrediente_id")
+    @MapsId("ingredienteId")
     @JoinColumn(name = "ingrediente_id")
     private Ingrediente ingrediente;
 
     @ManyToOne
-    @MapsId("receta_id")
+    @MapsId("recetaId")
     @JoinColumn(name = "receta_id")
     private Receta receta;
 
     private double cantidad;
     private String unidad;
 
+
+    public void addToAlumno(Receta a) {
+        a.getIngredientes().add(this);
+        this.receta = a;
+    }
+
+    public void removeFromAlumno(Receta a) {
+        a.getIngredientes().remove(this);
+        this.receta = null;
+    }
 
 
 

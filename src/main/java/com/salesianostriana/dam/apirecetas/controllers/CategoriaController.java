@@ -29,11 +29,11 @@ public class CategoriaController {
     private final CategoriaService categoriaService;
 
     @GetMapping
-    @Operation(summary = "obtiene todas las categorias")
+    @Operation(summary = "trae todas las categorias")
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    description = "Lista de categorías obtenida exitosamente",
+                    description = "Lista de categorías obtenida",
                     content = @Content(
                             mediaType = "application/json",
                             array = @ArraySchema(schema = @Schema(implementation = CategoriaResponse.class)),
@@ -62,6 +62,7 @@ public class CategoriaController {
             ),
             @ApiResponse(responseCode = "404", description = "No se ha encontrado ninguna categoria")
     })
+
     public List<CategoriaResponse> getAll(){
         return categoriaService.getAllCategoria()
                 .stream()
@@ -69,11 +70,17 @@ public class CategoriaController {
                 .toList();
     }
 
+    @GetMapping("/{id}")
+    @Operation(summary = "Trae una sola categoría")
+
     public ResponseEntity<CategoriaResponse> getById(Long id){
         return ResponseEntity.ok(
                 CategoriaResponse.of(categoriaService.getCategoriaById(id)));
 
     }
+
+    @PutMapping("/create")
+    @Operation(summary = "Crea una categoría")
 
     public ResponseEntity<CategoriaResponse> create(
             @RequestBody CrearCategoriaCmd cmd
@@ -84,11 +91,15 @@ public class CategoriaController {
     }
 
 
+    @PostMapping("/edit/{id}")
+    @Operation(summary = "Edita una categoría por id")
     public CategoriaResponse edit(@PathVariable Long id, @RequestBody CrearCategoriaCmd cmd){
         return CategoriaResponse.of(categoriaService.edit(cmd,id));
     }
 
 
+    @DeleteMapping ("/delete/{id}")
+    @Operation(summary = "Borra una categoría por id")
     public ResponseEntity<?> delete(@PathVariable Long id){
         categoriaService.deleteById(id);
         return ResponseEntity.noContent().build();
