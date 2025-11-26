@@ -8,6 +8,7 @@ import com.salesianostriana.dam.apirecetas.models.dto.RecetaCmd;
 import com.salesianostriana.dam.apirecetas.models.dto.RecetaResponse;
 import com.salesianostriana.dam.apirecetas.repository.RecetaRepository;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -17,6 +18,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
+
 public class RecetaService {
     RecetaRepository recetaRepository;
     public List<RecetaResponse> getAll(){
@@ -55,6 +57,11 @@ public class RecetaService {
                     return recetaRepository.save(receta);
                 })
                 .orElseThrow(() -> new TiempoInvalidoException());
+    }
+
+    public void borrar(Long id){
+        return recetaRepository.delete(recetaRepository.findById(id)
+                .orElseThrow(()->new TiempoInvalidoException()));
     }
 
 
