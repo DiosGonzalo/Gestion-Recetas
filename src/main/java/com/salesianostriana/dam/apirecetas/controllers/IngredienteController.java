@@ -3,16 +3,17 @@ package com.salesianostriana.dam.apirecetas.controllers;
 
 import com.salesianostriana.dam.apirecetas.Repository.IngredienteRespository;
 import com.salesianostriana.dam.apirecetas.models.Ingrediente;
+import com.salesianostriana.dam.apirecetas.models.dto.IngredienteCmd;
 import com.salesianostriana.dam.apirecetas.models.dto.IngredienteResponse;
 import com.salesianostriana.dam.apirecetas.services.IngredienteService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,9 +34,13 @@ public class IngredienteController {
                 .toList();
     }
 
-    @PutMapping
+    @PutMapping ("/crear")
     @Operation(summary = "Crea un ingrediente")
-
+    public ResponseEntity<IngredienteResponse> create( @RequestBody IngredienteCmd cmd){
+        Ingrediente nuevo = cmd.toEntity();
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(IngredienteResponse.of(nuevo));
+    }
 
 
 
