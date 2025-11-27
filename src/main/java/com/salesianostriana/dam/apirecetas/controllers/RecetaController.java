@@ -81,7 +81,7 @@ public class RecetaController {
     }
 
 
-    @GetMapping("/crear")
+    @PutMapping("/crear")
     @Operation(summary = "Crea una receta")
 
     public Receta crear(RecetaCmd cmd){
@@ -89,14 +89,14 @@ public class RecetaController {
     }
 
 
-    @GetMapping("/edit/{id}")
+    @PostMapping("/edit/{id}")
     @Operation(summary = "Edita una receta")
     public Receta edit(@PathVariable Long id, RecetaCmd cmd){
         return recetaService.edit(cmd,id);
     }
 
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     @Operation(summary = "borra una receta")
     public void delete(@PathVariable Long id){
         recetaService.borrar(id);

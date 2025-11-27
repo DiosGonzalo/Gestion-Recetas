@@ -1,7 +1,7 @@
 package com.salesianostriana.dam.apirecetas.services;
 
 
-import com.salesianostriana.dam.apirecetas.repository.CategoriaRepository;
+import com.salesianostriana.dam.apirecetas.Repository.CategoriaRepository;
 import com.salesianostriana.dam.apirecetas.errors.DuplicatedNameException.DuplicatedNameException;
 import com.salesianostriana.dam.apirecetas.errors.NotFoundException.MyEntityNotFoundException;
 import com.salesianostriana.dam.apirecetas.errors.TiempoInvalidoException;
