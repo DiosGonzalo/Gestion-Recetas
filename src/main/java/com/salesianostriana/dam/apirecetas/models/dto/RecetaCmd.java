@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.apirecetas.models.dto;
 
+import com.salesianostriana.dam.apirecetas.models.Categoria;
 import com.salesianostriana.dam.apirecetas.models.Receta;
 import com.salesianostriana.dam.apirecetas.models.enums.Dificultad;
 

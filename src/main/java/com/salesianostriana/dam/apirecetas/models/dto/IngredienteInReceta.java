@@ -14,7 +14,7 @@ public record IngredienteInReceta (
  List<IngredienteCantCmd> ingredientes
 ){
     public static IngredienteInReceta of (Receta receta){
-        return new RecetaResponse(
+        return new IngredienteInReceta(
                 receta.getId(),
                 receta.getNombre(),
                 receta.getTiempoPreparacionMin(),

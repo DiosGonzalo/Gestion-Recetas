@@ -4,6 +4,7 @@ package com.salesianostriana.dam.apirecetas.services;
 import com.salesianostriana.dam.apirecetas.errors.DuplicatedNameException.DuplicatedNameException;
 import com.salesianostriana.dam.apirecetas.errors.TiempoInvalidoException;
 import com.salesianostriana.dam.apirecetas.models.Receta;
+import com.salesianostriana.dam.apirecetas.models.dto.IngredienteInReceta;
 import com.salesianostriana.dam.apirecetas.models.dto.RecetaCmd;
 import com.salesianostriana.dam.apirecetas.models.dto.RecetaResponse;
 import com.salesianostriana.dam.apirecetas.repository.RecetaRepository;
@@ -57,5 +58,14 @@ public class RecetaService {
                 .orElseThrow(() -> new TiempoInvalidoException());
     }
 
+    public void borrar(Long id){
+        recetaRepository.delete(recetaRepository.findById(id)
+                .orElseThrow(() -> new TiempoInvalidoException()));
+    }
+
+    public IngredienteInReceta recetaConIngredientes(Long id){
+            Receta receta = recetaRepository.findById(id).orElseThrow(() -> new TiempoInvalidoException());
+            return IngredienteInReceta.of(receta);
+        }
 
 }
