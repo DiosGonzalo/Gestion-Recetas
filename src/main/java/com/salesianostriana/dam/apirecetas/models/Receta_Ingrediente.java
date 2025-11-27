@@ -38,12 +38,12 @@ public class Receta_Ingrediente {
     private String unidad;
 
 
-    public void addToReceta(Receta r) { // CAMBIADO de addToAlumno
+    public void addToReceta(Receta r) {
         r.getIngredientes().add(this);
         this.receta = r;
     }
 
-    public void removeFromReceta(Receta r) { // CAMBIADO de removeFromAlumno
+    public void removeFromReceta(Receta r) {
         r.getIngredientes().remove(this);
         this.receta = null;
     }
