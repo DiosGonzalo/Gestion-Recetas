@@ -1,12 +1,13 @@
 package com.salesianostriana.dam.apirecetas.services;
 
 
-import com.salesianostriana.dam.apirecetas.Repository.CategoriaRepository;
+import com.salesianostriana.dam.apirecetas.repository.CategoriaRepository;
 import com.salesianostriana.dam.apirecetas.errors.DuplicatedNameException.DuplicatedNameException;
 import com.salesianostriana.dam.apirecetas.errors.NotFoundException.MyEntityNotFoundException;
 import com.salesianostriana.dam.apirecetas.errors.TiempoInvalidoException;
 import com.salesianostriana.dam.apirecetas.models.Categoria;
 import com.salesianostriana.dam.apirecetas.models.dto.CrearCategoriaCmd;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -14,7 +15,7 @@ import org.springframework.util.StringUtils;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CategoriaService {
     private final CategoriaRepository categoriaRepository;
 
