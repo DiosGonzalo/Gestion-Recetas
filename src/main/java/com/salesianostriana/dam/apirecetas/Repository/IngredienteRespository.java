@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.apirecetas.repository;
+package com.salesianostriana.dam.apirecetas.Repository;
 
 import com.salesianostriana.dam.apirecetas.models.Categoria;
 import com.salesianostriana.dam.apirecetas.models.Ingrediente;

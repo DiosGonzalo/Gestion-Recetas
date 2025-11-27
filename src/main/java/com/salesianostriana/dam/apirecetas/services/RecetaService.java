@@ -1,29 +1,35 @@
 package com.salesianostriana.dam.apirecetas.services;
 
-
 import com.salesianostriana.dam.apirecetas.errors.DuplicatedNameException.DuplicatedNameException;
 import com.salesianostriana.dam.apirecetas.errors.TiempoInvalidoException;
+import com.salesianostriana.dam.apirecetas.models.Ingrediente;
 import com.salesianostriana.dam.apirecetas.models.Receta;
+import com.salesianostriana.dam.apirecetas.models.Receta_Ingrediente;
+import com.salesianostriana.dam.apirecetas.models.dto.AñadirIngredienteCmd;
 import com.salesianostriana.dam.apirecetas.models.dto.IngredienteInReceta;
 import com.salesianostriana.dam.apirecetas.models.dto.RecetaCmd;
 import com.salesianostriana.dam.apirecetas.models.dto.RecetaResponse;
-import com.salesianostriana.dam.apirecetas.repository.RecetaRepository;
-import lombok.AllArgsConstructor;
+import com.salesianostriana.dam.apirecetas.Repository.*;
+import com.salesianostriana.dam.apirecetas.Repository.RecetaRepository;
+import com.salesianostriana.dam.apirecetas.Repository.IngredienteRespository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class RecetaService {
-    RecetaRepository recetaRepository;
+
+    private final RecetaRepository recetaRepository;
+    private final IngredienteRespository ingredienteRespository;
+
     public List<RecetaResponse> getAll(){
         return recetaRepository.findAll()
                 .stream()
-                .map(receta -> RecetaResponse.of(receta))
+                .map(RecetaResponse::of)
                 .toList();
     }
 
@@ -43,8 +49,6 @@ public class RecetaService {
         Receta nueva = cmd.toEntity(cmd);
 
         return recetaRepository.save(nueva);
-
-
     }
 
     public Receta edit(RecetaCmd cmd, Long id){
@@ -64,8 +68,22 @@ public class RecetaService {
     }
 
     public IngredienteInReceta recetaConIngredientes(Long id){
-            Receta receta = recetaRepository.findById(id).orElseThrow(() -> new TiempoInvalidoException());
-            return IngredienteInReceta.of(receta);
-        }
+        Receta receta = recetaRepository.findById(id).orElseThrow(() -> new TiempoInvalidoException());
+        return IngredienteInReceta.of(receta);
+    }
 
+    public Receta addIngredienteReceta(Long idReceta, AñadirIngredienteCmd cmd) {
+
+        Receta receta = recetaRepository.findById(idReceta)
+                .orElseThrow(() -> new EntityNotFoundException("No se encontró la receta con ID: " + idReceta));
+
+        Ingrediente ingrediente = ingredienteRespository.findById(cmd.ingredienteId())
+                .orElseThrow(() -> new EntityNotFoundException("No se encontró el ingrediente con ID: " + cmd.ingredienteId()));
+
+        Receta_Ingrediente relacion = cmd.toEntity(ingrediente, receta);
+
+        receta.getIngredientes().add(relacion);
+
+        return recetaRepository.save(receta);
+    }
 }

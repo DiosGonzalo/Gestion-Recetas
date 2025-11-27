@@ -1,9 +1,7 @@
 package com.salesianostriana.dam.apirecetas.controllers;
 
 import com.salesianostriana.dam.apirecetas.models.Receta;
-import com.salesianostriana.dam.apirecetas.models.dto.CategoriaResponse;
-import com.salesianostriana.dam.apirecetas.models.dto.RecetaCmd;
-import com.salesianostriana.dam.apirecetas.models.dto.RecetaResponse;
+import com.salesianostriana.dam.apirecetas.models.dto.*;
 import com.salesianostriana.dam.apirecetas.services.RecetaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -15,6 +13,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -105,6 +105,20 @@ public class RecetaController {
 
     @GetMapping("/{recetaId}")
     @Operation(summary = "da una receta con la lista de ingredientes")
+    public IngredienteInReceta recetaConIngredientes(@PathVariable Long id){
+        return recetaService.recetaConIngredientes(id);
+    }
+
+    @PostMapping("/{id}/ingredientes")
+    public ResponseEntity<IngredienteInReceta> addIngrediente(
+            @PathVariable Long id,
+            @RequestBody AñadirIngredienteCmd cmd) {
+
+        Receta receta = recetaService.addIngredienteReceta(id, cmd);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(IngredienteInReceta.of(receta));
+    }
 
 
 }
