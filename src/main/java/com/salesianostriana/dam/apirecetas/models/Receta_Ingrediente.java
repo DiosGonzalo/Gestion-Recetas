@@ -2,12 +2,14 @@ package com.salesianostriana.dam.apirecetas.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Data
 public class Receta_Ingrediente {
 
@@ -36,13 +38,13 @@ public class Receta_Ingrediente {
     private String unidad;
 
 
-    public void addToAlumno(Receta a) {
-        a.getIngredientes().add(this);
-        this.receta = a;
+    public void addToReceta(Receta r) { // CAMBIADO de addToAlumno
+        r.getIngredientes().add(this);
+        this.receta = r;
     }
 
-    public void removeFromAlumno(Receta a) {
-        a.getIngredientes().remove(this);
+    public void removeFromReceta(Receta r) { // CAMBIADO de removeFromAlumno
+        r.getIngredientes().remove(this);
         this.receta = null;
     }
 

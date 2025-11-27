@@ -32,4 +32,14 @@ public class Receta {
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+
+    public void addIngrediente(Ingrediente ingrediente, double cantidad, String unidad) {
+        Receta_Ingrediente ri = Receta_Ingrediente.builder()
+                .pk(new Receta_Ingrediente_PK(this.id, ingrediente.getId()))
+                .receta(this)
+                .ingrediente(ingrediente)
+                .cantidad(cantidad)
+                .unidad(unidad)
+                .build(); this.ingredientes.add(ri); }
 }
