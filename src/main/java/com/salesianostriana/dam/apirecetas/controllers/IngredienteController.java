@@ -80,7 +80,6 @@ public class IngredienteController {
                             value = """
                                 {
                                     "nombre": "Sal",
-                                    "alergeno": false
                                 }
                                 """
                     )
@@ -98,7 +97,6 @@ public class IngredienteController {
                                         {
                                             "id": 4,
                                             "nombre": "Sal",
-                                            "alergeno": false
                                         }
                                         """
                             )
