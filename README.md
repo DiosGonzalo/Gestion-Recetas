@@ -20,7 +20,7 @@ Incluye uso de DTOs para desacoplar la capa de datos, documentación Swagger y m
 
 | Tecnología | Uso |
 |-----------|------|
-| Java 17+ | Lenguaje |
+| Java 21+ | Lenguaje |
 | Spring Boot | Framework REST |
 | Spring Data JPA | Persistencia |
 | H2 | Base de datos en memoria |
