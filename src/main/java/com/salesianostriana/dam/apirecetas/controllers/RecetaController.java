@@ -114,7 +114,7 @@ public class RecetaController {
     }
 
 
-    @PutMapping("/crear")
+    @PostMapping("/crear")
     @Operation(summary = "Crea una receta")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             content = @Content(
@@ -174,7 +174,7 @@ public class RecetaController {
     }
 
 
-    @PostMapping("/edit/{id}")
+    @PutMapping("/edit/{id}")
     @Operation(summary = "Edita una receta")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             content = @Content(
@@ -261,7 +261,7 @@ public class RecetaController {
     }
 
 
-    @GetMapping("/{recetaId}/ingredientes")
+    @PostMapping("/{recetaId}/ingredientes")
     @Operation(summary = "Obtiene una receta con la lista detallada de sus ingredientes")
     @ApiResponses({
             @ApiResponse(

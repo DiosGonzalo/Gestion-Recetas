@@ -1,0 +1,245 @@
+{
+	"info": {
+		"_postman_id": "1cac5151-6a0b-4d87-86b6-7253ce7805ef",
+		"name": "Api_recetas_GonzaloDIos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50074873",
+		"_collection_link": "https://warped-equinox-59252.postman.co/workspace/Api_Recetas~f8bf2f95-630f-494a-9842-c316f1870b4a/collection/50074873-1cac5151-6a0b-4d87-86b6-7253ce7805ef?action=share&source=collection_link&creator=50074873"
+	},
+	"item": [
+		{
+			"name": "Categorias",
+			"item": [
+				{
+					"name": "Get Categorias",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}{{categorias}}",
+							"host": [
+								"{{baseUrl}}{{categorias}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "crear Categoria",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"pedro\",\"descripcion\":\"esto es una descripcion para pedro\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{categorias}}/create",
+							"host": [
+								"{{baseUrl}}{{categorias}}"
+							],
+							"path": [
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get Categoria por id",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "delete categoria",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "editar categoria",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"nombre\":\"Aperitivos Actualizado\",\"descripcion\":\"Descripción actualizada de la categoria\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/categoria/edit/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"categoria",
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ingredientes",
+			"item": [
+				{
+					"name": "crear ingredietne",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Postres\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/ingredientes/crear",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ingredientes",
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "listar ingredientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/ingredientes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ingredientes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Recetas",
+			"item": [
+				{
+					"name": "obtener recetas",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "detalles receta",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "crear receta",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Bocata lomo ya\",\r\n  \"tiempoPreparacionMin\": 11,\r\n  \"dificultad\": \"DIFICIL\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{recetas}}/crear",
+							"host": [
+								"{{baseUrl}}{{recetas}}"
+							],
+							"path": [
+								"crear"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nombre\": \"Bocata chorizo ya\",\r\n  \"dificultad\": \"Facil\",\r\n  \"tiempoPreparacionMin\": 20,\r\n  \"categoriaID\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}{{recetas}}/edit/1",
+							"host": [
+								"{{baseUrl}}{{recetas}}"
+							],
+							"path": [
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "add ingrediente",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -104,7 +104,7 @@ public class CategoriaController {
 
     }
 
-    @PutMapping("/create")
+    @PostMapping("/create")
     @Operation(summary = "Crea una categoría")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             content = @Content(
@@ -155,7 +155,7 @@ public class CategoriaController {
     }
 
 
-    @PostMapping("/edit/{id}")
+    @PutMapping("/edit/{id}")
     @Operation(summary = "Edita una categoría por id")
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             content = @Content(

@@ -32,7 +32,7 @@ public class CategoriaService {
         if(!StringUtils.hasText(cmd.nombre())){
             throw new TiempoInvalidoException("El nombre no puede estar vacio");
         }
-        if(!categoriaRepository.existsByNombre(cmd.nombre())){
+        if(categoriaRepository.existsByNombre(cmd.nombre())){
             throw new DuplicatedNameException();
         }
 
@@ -48,7 +48,7 @@ public class CategoriaService {
 
                     return categoriaRepository.save(categoria);
                 })
-                .orElseThrow(() -> new TiempoInvalidoException());
+                .orElseThrow(() -> new MyEntityNotFoundException(id));
     }
 
     public void deleteById(Long id){

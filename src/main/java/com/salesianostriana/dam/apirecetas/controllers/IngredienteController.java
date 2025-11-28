@@ -70,7 +70,7 @@ public class IngredienteController {
                 .toList();
     }
 
-    @PutMapping ("/crear")
+    @PostMapping ("/crear")
     @Operation(summary = "Crea un ingrediente")
     @RequestBody(
             content = @Content(

@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.apirecetas.services;
 
 import com.salesianostriana.dam.apirecetas.errors.DuplicatedNameException.DuplicatedNameException;
+import com.salesianostriana.dam.apirecetas.errors.NotFoundException.MyEntityNotFoundException;
 import com.salesianostriana.dam.apirecetas.errors.TiempoInvalidoException;
 import com.salesianostriana.dam.apirecetas.models.Ingrediente;
 import com.salesianostriana.dam.apirecetas.models.Receta;
@@ -34,11 +35,11 @@ public class RecetaService {
 
     public Receta getById(Long id){
         return recetaRepository.findById(id)
-                .orElseThrow(() -> new TiempoInvalidoException(id));
+                .orElseThrow(() -> new MyEntityNotFoundException(id));
     }
 
     public Receta create(RecetaCmd cmd){
-        if(!StringUtils.hasText(cmd.nombre())){
+        if(StringUtils.hasText(cmd.nombre())){
             throw  new TiempoInvalidoException("Nombre no puede estar vacio");
         }
 
