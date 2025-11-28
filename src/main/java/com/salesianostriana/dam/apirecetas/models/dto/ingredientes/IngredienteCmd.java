@@ -1,10 +1,6 @@
-package com.salesianostriana.dam.apirecetas.models.dto;
+package com.salesianostriana.dam.apirecetas.models.dto.ingredientes;
 
 import com.salesianostriana.dam.apirecetas.models.Ingrediente;
-import com.salesianostriana.dam.apirecetas.models.Receta;
-import com.salesianostriana.dam.apirecetas.models.Receta_Ingrediente;
-
-import java.util.List;
 
 public record IngredienteCmd(
         String nombre

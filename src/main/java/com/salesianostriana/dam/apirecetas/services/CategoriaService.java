@@ -6,9 +6,8 @@ import com.salesianostriana.dam.apirecetas.errors.DuplicatedNameException.Duplic
 import com.salesianostriana.dam.apirecetas.errors.NotFoundException.MyEntityNotFoundException;
 import com.salesianostriana.dam.apirecetas.errors.TiempoInvalidoException;
 import com.salesianostriana.dam.apirecetas.models.Categoria;
-import com.salesianostriana.dam.apirecetas.models.dto.CrearCategoriaCmd;
+import com.salesianostriana.dam.apirecetas.models.dto.categorias.CrearCategoriaCmd;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 

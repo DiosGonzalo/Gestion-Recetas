@@ -1,7 +1,6 @@
-package com.salesianostriana.dam.apirecetas.models.dto;
+package com.salesianostriana.dam.apirecetas.models.dto.categorias;
 
 import com.salesianostriana.dam.apirecetas.models.Categoria;
-import com.salesianostriana.dam.apirecetas.models.Receta;
 
 public record CrearCategoriaCmd (
 

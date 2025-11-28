@@ -5,11 +5,10 @@ import com.salesianostriana.dam.apirecetas.errors.TiempoInvalidoException;
 import com.salesianostriana.dam.apirecetas.models.Ingrediente;
 import com.salesianostriana.dam.apirecetas.models.Receta;
 import com.salesianostriana.dam.apirecetas.models.Receta_Ingrediente;
-import com.salesianostriana.dam.apirecetas.models.dto.AñadirIngredienteCmd;
-import com.salesianostriana.dam.apirecetas.models.dto.IngredienteInReceta;
-import com.salesianostriana.dam.apirecetas.models.dto.RecetaCmd;
-import com.salesianostriana.dam.apirecetas.models.dto.RecetaResponse;
-import com.salesianostriana.dam.apirecetas.Repository.*;
+import com.salesianostriana.dam.apirecetas.models.dto.ingredientesRecetas.AñadirIngredienteCmd;
+import com.salesianostriana.dam.apirecetas.models.dto.ingredientesRecetas.IngredienteInReceta;
+import com.salesianostriana.dam.apirecetas.models.dto.Recetas.RecetaCmd;
+import com.salesianostriana.dam.apirecetas.models.dto.Recetas.RecetaResponse;
 import com.salesianostriana.dam.apirecetas.Repository.RecetaRepository;
 import com.salesianostriana.dam.apirecetas.Repository.IngredienteRespository;
 import jakarta.persistence.EntityNotFoundException;
@@ -59,16 +58,16 @@ public class RecetaService {
                     receta.setTiempoPreparacionMin(cmd.tiempoPreparacionMin());
                     return recetaRepository.save(receta);
                 })
-                .orElseThrow(() -> new TiempoInvalidoException());
+                .orElseThrow(TiempoInvalidoException::new);
     }
 
     public void borrar(Long id){
         recetaRepository.delete(recetaRepository.findById(id)
-                .orElseThrow(() -> new TiempoInvalidoException()));
+                .orElseThrow(TiempoInvalidoException::new));
     }
 
     public IngredienteInReceta recetaConIngredientes(Long id){
-        Receta receta = recetaRepository.findById(id).orElseThrow(() -> new TiempoInvalidoException());
+        Receta receta = recetaRepository.findById(id).orElseThrow(TiempoInvalidoException::new);
         return IngredienteInReceta.of(receta);
     }
 
@@ -80,7 +79,12 @@ public class RecetaService {
         Ingrediente ingrediente = ingredienteRespository.findById(cmd.ingredienteId())
                 .orElseThrow(() -> new EntityNotFoundException("No se encontró el ingrediente con ID: " + cmd.ingredienteId()));
 
+
         Receta_Ingrediente relacion = cmd.toEntity(ingrediente, receta);
+
+        if(relacion.getCantidad()<= 0){
+            throw new TiempoInvalidoException("No puede tener una cantidad igual a 0 o negativa");
+        }
 
         receta.getIngredientes().add(relacion);
 

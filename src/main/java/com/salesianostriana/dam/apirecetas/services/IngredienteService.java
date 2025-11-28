@@ -1,13 +1,11 @@
 package com.salesianostriana.dam.apirecetas.services;
 
-import ch.qos.logback.core.util.StringUtil;
 import com.salesianostriana.dam.apirecetas.Repository.IngredienteRespository;
 import com.salesianostriana.dam.apirecetas.errors.IngredienteAlredyAddedException;
 import com.salesianostriana.dam.apirecetas.errors.TiempoInvalidoException;
 import com.salesianostriana.dam.apirecetas.models.Ingrediente;
-import com.salesianostriana.dam.apirecetas.models.dto.IngredienteCmd;
+import com.salesianostriana.dam.apirecetas.models.dto.ingredientes.IngredienteCmd;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 

@@ -1,4 +1,4 @@
-package com.salesianostriana.dam.apirecetas.models.dto;
+package com.salesianostriana.dam.apirecetas.models.dto.ingredientesRecetas;
 
 import com.salesianostriana.dam.apirecetas.models.Ingrediente;
 import com.salesianostriana.dam.apirecetas.models.Receta;
