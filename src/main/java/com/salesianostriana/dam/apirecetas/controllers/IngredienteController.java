@@ -44,17 +44,14 @@ public class IngredienteController {
                         {
                             "id": 1,
                             "nombre": "Harina de Trigo",
-                            "alergeno": false
                         },
                         {
                             "id": 2,
                             "nombre": "Huevos",
-                            "alergeno": true
                         },
                         {
                             "id": 3,
                             "nombre": "Leche",
-                            "alergeno": true
                         }
                     ]
                     """
